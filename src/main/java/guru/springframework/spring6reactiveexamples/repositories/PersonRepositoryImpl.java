@@ -16,7 +16,13 @@ public class PersonRepositoryImpl implements PersonRepository {
 
     @Override
     public Mono<Person> getById(Integer id) {
-        return Mono.just(michael);
+//        Mono<Person> personMono = personFlux.filter(person -> person.getId() == id).single()
+//                .doOnError(throwable -> {
+//                    System.out.println("Error occurred in flux");
+//                    System.out.println(throwable.toString());
+//                });
+        Flux<Person> personFlux = findAll();
+        return personFlux.filter(person -> person.getId() == id).single().doOnError(throwable -> Mono.empty());
     }
 
     @Override

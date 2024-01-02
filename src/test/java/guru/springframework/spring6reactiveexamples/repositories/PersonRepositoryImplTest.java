@@ -97,7 +97,7 @@ class PersonRepositoryImplTest {
     void testFindPersonByIdNotFound() {
         Flux<Person> personFlux = personRepository.findAll();
 
-        final Integer id = 8;
+        final Integer id = 2;
 
         Mono<Person> personMono = personFlux.filter(person -> person.getId() == id).single()
                 .doOnError(throwable -> {
@@ -112,6 +112,7 @@ class PersonRepositoryImplTest {
             System.out.println(throwable.toString());
         });
     }
+
 }
 
 
