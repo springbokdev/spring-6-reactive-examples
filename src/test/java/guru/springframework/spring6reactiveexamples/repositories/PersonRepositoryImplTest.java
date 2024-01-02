@@ -24,10 +24,7 @@ class PersonRepositoryImplTest {
     @Test
     void testGetByIdSubscriber() {
         Mono<Person> personMono = personRepository.getById(1);
-
-        personMono.subscribe(person -> {
-            System.out.println(person.toString());
-        });
+        personMono.subscribe(person -> System.out.println(person.toString()));
     }
 
     @Test
@@ -36,9 +33,7 @@ class PersonRepositoryImplTest {
 
         personMono.map(person -> {
             return person.getFirstName();
-        }).subscribe(firstName -> {
-            System.out.println(firstName);
-        });
+        }).subscribe(s -> System.out.println(s));
     }
 }
 
